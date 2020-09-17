@@ -1,0 +1,18 @@
+* Intro
+If a command depends on a certain program to be installed on your
+system, but it's not, that command is broken. =Whicher= makes it easy
+to keep track of the programs that your config depends on.
+
+Example:
+#+begin_src elisp
+(setq mu4e-get-mail-command (whicher "mbsync -a"))
+(setq mu4e-html2text-command (whicher "w3m -T text/html"))
+#+end_src
+
+Now, =whicher= knows that your config depends on =mbsync= and =w3m=.
+
+This comes at almost no performance penalty, since =executable-find= isn't called by
+=whicher=.
+
+Use =whicher-report= to see the state of your dependencies.  The output is similar to the
+output of =which(1)=, hence the name.
